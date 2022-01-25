@@ -57,7 +57,7 @@ public class SearchTest {
         String searchItem="Jeans";
 
         //Act
-        homePage.search(searchItem);
+        homePage.search(searchItem).submitSearch();
         List<Item>searchItems=searchResultPage.getDisplayedItems();
         int resultNumber=searchResultPage.getResultNumber();
 
