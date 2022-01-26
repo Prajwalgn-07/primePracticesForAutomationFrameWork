@@ -8,31 +8,32 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePage {
+public class HomePage extends BasePage {
     WebDriver webDriver;
     By searchIcon = By.cssSelector("summary[aria-label='Search']");
     By searchBar = By.id("Search-In-Modal");
-    By searchIconRes=By.cssSelector("form[role='search'] use");
+    By otherSearchIcon =By.xpath("//*[@class=\"icon icon-search\"]");
     By searchResults = By.cssSelector("li[id^='predictive-search-option'] a");
     By productName = By.cssSelector(".predictive-search__item-heading");
     public HomePage(WebDriver driver) {
+        super(driver);
         this.webDriver=driver;
     }
 
     public HomePage search(String searchItem) {
-        webDriver.findElement(searchIcon).click();
-        webDriver.findElement(searchBar).sendKeys(searchItem);
+        pageActions.click(searchIcon);
+        pageActions.type(searchBar,searchItem);
         return this;
     }
     public void submitSearch(){
-        webDriver.findElement(searchIconRes).click();
+        pageActions.click(otherSearchIcon);
     }
 
     public List<Item> getSearchItems() {
         List<WebElement> elements = webDriver.findElements(searchResults);
         List<Item> items = new ArrayList<>();
         for(WebElement element : elements) {
-            String name = element.findElement(productName).getText();
+            String name =pageActions.getChildText(element,productName);
             Item item = new Item();
             item.setName(name);
             items.add(item);

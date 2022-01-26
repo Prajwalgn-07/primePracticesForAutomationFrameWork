@@ -1,11 +1,13 @@
 package com.primePracticesForAutomationFrameWork;
 
+import com.primePracticesForAutomationFrameWork.drivers.DriverCreator;
 import com.primePracticesForAutomationFrameWork.pages.HomePage;
 import com.primePracticesForAutomationFrameWork.pages.LauncherPage;
 import com.primePracticesForAutomationFrameWork.pages.SearchResultPage;
 import com.primePracticesForAutomationFrameWork.models.Item;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -21,7 +23,7 @@ public class SearchTest {
     @BeforeTest
     public void setUp(){
         //Arrange
-        webDriver =null;
+        webDriver =new DriverCreator().createDriverContext("chrome").create();
         launcherPage=new LauncherPage(webDriver);
         homePage=new HomePage(webDriver);
         searchResultPage=new SearchResultPage(webDriver);
@@ -63,5 +65,9 @@ public class SearchTest {
 
         //Assert
         Assert.assertEquals(searchItems.size(),resultNumber);
+    }
+    @AfterTest
+    public void tearDown(){
+        webDriver.quit();
     }
 }

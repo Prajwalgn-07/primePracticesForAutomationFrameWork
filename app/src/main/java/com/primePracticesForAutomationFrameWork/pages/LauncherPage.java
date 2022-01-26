@@ -1,5 +1,6 @@
 package com.primePracticesForAutomationFrameWork.pages;
 
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,8 +19,9 @@ public class LauncherPage {
     }
 
     public boolean isSiteLoaded() {
-        return new WebDriverWait(webDriver, Duration.ofSeconds(10)).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        return new WebDriverWait(webDriver,Duration.ofSeconds(10)).until(
+                webDriver->((JavascriptExecutor)webDriver).executeScript("return document.readyState").equals("complete")
+        );
     }
 }
 
