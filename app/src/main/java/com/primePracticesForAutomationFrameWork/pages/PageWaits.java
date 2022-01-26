@@ -30,7 +30,7 @@ public class PageWaits {
 
     private FluentWait<WebDriver> initWait(WebDriver webDriver) {
         return new FluentWait<>(webDriver)
-                .withTimeout(Duration.ofSeconds(30))
+                .withTimeout(Duration.ofSeconds(40))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);

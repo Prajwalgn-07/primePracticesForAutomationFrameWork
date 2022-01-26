@@ -2,6 +2,7 @@ package com.primePracticesForAutomationFrameWork.pages;
 
 import com.primePracticesForAutomationFrameWork.models.Item;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -30,13 +31,17 @@ public class HomePage extends BasePage {
     }
 
     public List<Item> getSearchItems() {
-        List<WebElement> elements = webDriver.findElements(searchResults);
         List<Item> items = new ArrayList<>();
-        for(WebElement element : elements) {
-            String name =pageActions.getChildText(element,productName);
-            Item item = new Item();
-            item.setName(name);
-            items.add(item);
+        try {
+            List<WebElement> elements = pageWaits.waitUntilAllElementsAreVisible(searchResults);
+            for (WebElement element : elements) {
+                String name = pageActions.getChildText(element, productName);
+                Item item = new Item();
+                item.setName(name);
+                items.add(item);
+            }
+        }catch (TimeoutException e){
+            return items;
         }
         return items;
     }
