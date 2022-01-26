@@ -33,6 +33,9 @@ jobs:
   web_test:
     runs-on: ubuntu-latest
     needs: build
+    strategy:
+      matrix:
+        browser: [chrome,firefox]
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
@@ -41,8 +44,10 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: gradle
-      - name: setup chrome
-        uses: browser-actions/setup-chrome@latest
+      - name: setup browser
+        uses: browser-actions/setup-browser@latest
+        with:
+          browser:${{matrix.browser}}
       - name: Run Web Tests
         uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
         with:
