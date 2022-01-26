@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends BasePage {
-    WebDriver webDriver;
     By searchIcon = By.cssSelector("summary[aria-label='Search']");
     By searchBar = By.id("Search-In-Modal");
     By otherSearchIcon =By.xpath("//*[@class=\"icon icon-search\"]");
@@ -18,7 +17,6 @@ public class HomePage extends BasePage {
     By productName = By.cssSelector(".predictive-search__item-heading");
     public HomePage(WebDriver driver) {
         super(driver);
-        this.webDriver=driver;
     }
 
     public HomePage search(String searchItem) {

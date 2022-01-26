@@ -7,10 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LauncherPage {
-    WebDriver webDriver;
+public class LauncherPage extends BasePage{
     public LauncherPage(WebDriver driver) {
-        this.webDriver = driver;
+        super(driver);
     }
 
     public boolean navigateTo(String url) {

@@ -8,12 +8,11 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultPage {
-    WebDriver webDriver;
+public class SearchResultPage extends BasePage{
     By productsName=By.xpath("//*[@class=\"card-information__text h5\"]//a");
     By numberOfResults=By.cssSelector("p#ProductCountDesktop");
     public SearchResultPage(WebDriver driver) {
-        this.webDriver =driver;
+        super(driver);
     }
 
     public List<Item> getDisplayedItems() {

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public class BasePage{
     protected PageWaits pageWaits;
-    private WebDriver webDriver;
+    protected WebDriver webDriver;
     protected PageActions pageActions;
 
     public BasePage(WebDriver webDriver) {
